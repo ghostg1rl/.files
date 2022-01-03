@@ -203,7 +203,7 @@ end)
 --- Tyrannical module tags configuration {{{
 tyrannical.tags = {
     {
-        name        = "Main",                   -- Call the tag "Main"
+        name        = "main",                   -- Call the tag "Main"
         init        = true,                     -- Load the tag on startup
         exclusive   = true,                     -- Refuse any other type of clients (by classes)
         screen      = 1,                        -- Create this tag on screen 1
@@ -212,7 +212,7 @@ tyrannical.tags = {
         class       = { "Alacritty" }   	-- Accept the following classes, refuse everything else (exclusive == 'true')
     },
     {
-        name        = "Net",
+        name        = "net",
         init        = true,
         exclusive   = true,
         screen      = 1,
@@ -221,16 +221,16 @@ tyrannical.tags = {
         class 	    = { "Firefox" }
     },
     {
-        name        = "Read",
+        name        = "read",
         init        = true,
         exclusive   = true,
         screen      = 1,
         layout      = rc.layouts[2],
-        exec_once   = { "zathura" },         
+        exec_once   = { "zathura" },
 	class  	    = { "Zathura" }
     },
     {
-        name        = "Art",
+        name        = "art",
         init        = true,
         exclusive   = true,
         screen      = 1,
@@ -238,7 +238,7 @@ tyrannical.tags = {
         class 	    = { "Gimp", "Krita" }
     },
     {
-        name        = "Msg",
+        name        = "msgs",
         init        = true,
         exclusive   = true,
         screen      = 1,
@@ -246,7 +246,7 @@ tyrannical.tags = {
         class 	    = { "Discord", "TelegramDesktop" }
     },
     {
-        name        = "System",
+        name        = "sys",
         exclusive   = false,
         layout      = rc.layouts[1],
         class       = { "Alacritty" }
@@ -285,9 +285,7 @@ tyrannical.settings.group_children = true --Force popups/dialogs to have the sam
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ }, 3, function () mymainmenu:toggle() end)
 ))
 -- }}}
 
@@ -640,7 +638,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 
 
- 
+
 -- {{{ Autostart applications
 autostart = true
 autostartApps = {
