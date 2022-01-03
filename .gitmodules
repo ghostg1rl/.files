@@ -1,3 +1,6 @@
 [submodule "awesome/tyrannical"]
 	path = awesome/tyrannical
 	url = https://github.com/Elv13/tyrannical
+[submodule "picom/awesome/tyrannical"]
+	path = picom/awesome/tyrannical
+	url = https://github.com/Elv13/tyrannical
