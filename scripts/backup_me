@@ -1,4 +1,0 @@
-#!/bin/bash
-
-sudo rsync -azz /etc /backup/
-sudo rsync -azz /home/thereayou /backup/home
