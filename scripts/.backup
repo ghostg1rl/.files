@@ -10,8 +10,8 @@ else
 fi
 
 # Copy necessary dot/config files
-sudo cp -r $HOME/{,.config/{nvim,zsh,alacritty,awesome,fontconfig,neofetch,picom},.nvidia-settings-rc,scripts,.xinitrc,.zshenv} $HOME/.files/
-sudo cp /usr/local/share/fonts/* $HOME/.files/fonts/fonts/
+sudo cp -r $HOME/{.config/{nvim,zsh,alacritty,awesome,picom},.nvidia-settings-rc,scripts,.xinitrc,.zshenv} $HOME/.files/
+sudo cp /usr/local/share/fonts/* $HOME/.config/fontconfig $HOME/.files/fonts/fonts/
 
 cd $HOME/.files/
 
