@@ -1,0 +1,6 @@
+#!/bin/bash
+
+rm -rf /home/thereayou/.cache/*
+
+# Delete everything in ~/.cache directory except the 'zsh' one
+#find ~/.cache/* -not -name 'zsh' -delete

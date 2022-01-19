@@ -26,7 +26,7 @@ local beautiful = require("beautiful")
 -- Initialize a theme from the specified path
 beautiful.init("/home/thereayou/.config/awesome/themes/default/theme.lua")
 
--- Custom Local Library {{{
+-- "main" module {{{
 local main = {
   require("main.error-handling"),
   vars = require("main.user-var"),
@@ -35,8 +35,9 @@ local main = {
   -- menu    = require("main.menu"),
   -- rules   = require("main.rules"),
 }
+--- }}}
 
--- User defined variables & modkey{{{
+-- User defined variables & modkey {{{
 rc.vars = main.vars()
 modkey = rc.vars.modkey
 -- }}}
@@ -643,7 +644,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 autostart = true
 autostartApps = {
 	"picom",
-	"nitrogen --set-scaled /home/thereayou/Pictures/Wallpapers/submerged-train.png"
+	"nitrogen --set-centered /home/thereayou/pictures/wallpapers/cherry-blossoms.jpg"
 }
 
 if autostart then
