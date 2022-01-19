@@ -1,0 +1,29 @@
+# general
+alias sudo='sudo -v; sudo '
+
+# system
+alias shutdown='sudo shutdown now'
+alias reboot='sudo reboot'
+alias upgrade='yay -Syyu'
+
+# arch
+alias pacman='sudo pacman'
+
+# ls
+alias ls='ls --color=auto'
+alias lsl='ls -l'
+alias la='lsl -ah'
+
+# cp, mv
+alias cp='cp -i'
+alias mv='mv -iv'
+
+# ping
+alias pg='ping 8.8.8.8'
+
+# neovim
+alias vim='nvim'
+alias svim='sudo vim'
+
+#personal
+alias zshrc='nvim ~/.config/zsh/.zshrc'
