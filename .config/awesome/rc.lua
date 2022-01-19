@@ -11,8 +11,6 @@ local awful = require("awful")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
--- Dynamic tags configuration module
-local tyrannical = require("tyrannical")
 -- Notification library
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
@@ -150,7 +148,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- REMEMBER
     -- Each screen has its own tag table.
-    -- awful.tag({ "Main", "Browser", "Read", "Art", "Msgs", "System" }, s, awful.layout.layouts[1])
+    awful.tag({ "main", "net", "read", "art", "msgs", "sys" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -198,89 +196,6 @@ awful.screen.connect_for_each_screen(function(s)
         },
     }
 end)
--- }}}
-
-
---- Tyrannical module tags configuration {{{
-tyrannical.tags = {
-    {
-        name        = "main",                   -- Call the tag "Main"
-        init        = true,                     -- Load the tag on startup
-        exclusive   = true,                     -- Refuse any other type of clients (by classes)
-        screen      = 1,                        -- Create this tag on screen 1
-        layout      = rc.layouts[1], 	        -- Use the tile layout
-        instance    = { rc.vars.terminal },	-- Accept the following instances. This takes precedence over 'class'
-        class       = { "Alacritty" }   	-- Accept the following classes, refuse everything else (exclusive == 'true')
-    },
-    {
-        name        = "net",
-        init        = true,
-        exclusive   = true,
-        screen      = 1,
-        layout      = rc.layouts[2],            -- Use the max layout
-	-- exec_once   = { rc.vars.browser },     	-- When the tag is accessed for the first time, execute this command
-        class 	    = { "Firefox" }
-    },
-    {
-        name        = "read",
-        init        = true,
-        exclusive   = true,
-        screen      = 1,
-        layout      = rc.layouts[2],
-        exec_once   = { "zathura" },
-	class  	    = { "Zathura" }
-    },
-    {
-        name        = "art",
-        init        = true,
-        exclusive   = true,
-        screen      = 1,
-        layout      = rc.layouts[1],
-        class 	    = { "Gimp", "Krita" }
-    },
-    {
-        name        = "msgs",
-        init        = true,
-        exclusive   = true,
-        screen      = 1,
-        layout      = rc.layouts[1],
-        class 	    = { "Discord", "TelegramDesktop" }
-    },
-    {
-        name        = "sys",
-        exclusive   = false,
-        layout      = rc.layouts[1],
-        class       = { "Alacritty" }
-    },
-}
-
--- Ignore the tag "exclusive" property for the following clients (matched by classes)
-tyrannical.properties.intrusive = {
-    "ksnapshot"     , "pinentry"       , "gtksu"     , "kcalc"        , "xcalc"               ,
-    "feh"           , "Gradient editor", "About KDE" , "Paste Special", "Background color"    ,
-    "kcolorchooser" , "plasmoidviewer" , "Xephyr"    , "kruler"       , "plasmaengineexplorer",
-}
-
--- Ignore the tiled layout for the matching clients
-tyrannical.properties.floating = {
-    "MPlayer"      , "pinentry"        , "ksnapshot"  , "pinentry"     , "gtksu"          ,
-    "xine"         , "feh"             , "kmix"       , "kcalc"        , "xcalc"          ,
-    "yakuake"      , "Select Color$"   , "kruler"     , "kcolorchooser", "Paste Special"  ,
-    "New Form"     , "Insert Picture"  , "kcharselect", "mythfrontend" , "plasmoidviewer"
-}
-
--- Make the matching clients (by classes) on top of the default layout
-tyrannical.properties.ontop = {
-    "Xephyr"       , "ksnapshot"       , "kruler"
-}
-
--- Force the matching clients (by classes) to be centered on the screen on init
-tyrannical.properties.placement = {
-    kcalc = awful.placement.centered
-}
-
-tyrannical.settings.block_children_focus_stealing = true --Block popups ()
-tyrannical.settings.group_children = true --Force popups/dialogs to have the same tags as the parent client
 -- }}}
 
 
