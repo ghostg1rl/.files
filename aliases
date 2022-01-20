@@ -2,8 +2,8 @@
 alias sudo='sudo -v; sudo '
 
 # system
-alias shutdown='shutdown now'
-alias reboot='reboot'
+alias shutdown='sudo shutdown now'
+alias reboot='sudo reboot'
 alias upgrade='yay -Syyu'
 
 # arch
