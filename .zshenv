@@ -4,6 +4,9 @@
 # export environment variables #
 ################################
 
+# path
+export PATH=$PATH:$HOME/scripts/
+
 # xdg
 export XDG_DATA_HOME="$HOME/.local/share/" \
     XDG_STATE_HOME="$HOME/.local/state/" \

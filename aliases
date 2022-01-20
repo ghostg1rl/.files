@@ -2,9 +2,12 @@
 alias sudo='sudo -v; sudo '
 
 # system
-alias shutdown='sudo shutdown now'
-alias reboot='sudo reboot'
+alias shutdown='shutdown now'
+alias reboot='reboot'
 alias upgrade='yay -Syyu'
+
+# visudo
+alias visudo='sudo -E visudo'
 
 # arch
 alias pacman='sudo pacman'
