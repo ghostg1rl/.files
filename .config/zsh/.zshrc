@@ -9,7 +9,7 @@ source $ZDOTDIR/plugins/completions.zsh
 
 # Get the theme
 fpath=($ZDOTDIR/plugins/themes/ $fpath)
-source $ZDOTDIR/plugins/themes/prompt_purification_setup
+source $ZDOTDIR/plugins/themes/comrade.zsh-theme
 
 # # The following lines were added by compinstall
 #
@@ -39,4 +39,5 @@ source $ZDOTDIR/plugins/themes/prompt_purification_setup
 
 # Some random additional options (deal with them later)
 setopt HIST_SAVE_NO_DUPS  # Do not write a duplicate event to the history file.
+setopt prompt_subst
 _comp_options+=(globdots) # Autocomplete '.' files

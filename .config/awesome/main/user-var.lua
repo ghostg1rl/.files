@@ -3,7 +3,7 @@ local _M = {}
 function _M.get ()
   local var_name = {}
 
-  var_name.terminal = "alacritty"
+  var_name.terminal = "kitty"
   var_name.browser = "firefox"
   var_name.rofi = "rofi -show drun -show-icons"
 
@@ -13,7 +13,7 @@ function _M.get ()
   var_name.modkey = "Mod4"
   -- user defined wallpaper
   --var_name.wallpaper = home .. "/Pictures/your-wallpaper-here.jpg",
-  
+
   return var_name
 end
 

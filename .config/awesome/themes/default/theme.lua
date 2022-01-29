@@ -11,8 +11,9 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
--- theme.font          = "Perfect DOS VGA 437 12"
-theme.font          = "SF Pro Display Medium 11"
+theme.font          = "Perfect DOS VGA 437 12"
+-- theme.font          = "Unifont 12"
+-- theme.font          = "SF Pro Display Medium 11"
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#535d6c"

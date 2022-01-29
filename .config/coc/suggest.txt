@@ -1,3 +1,10 @@
+ZSH_THEME_FURIO_P|ZSH_THEME_FURIO_PREFIX|around
+git|git.zsh|file
+lib|lib|file
+|lib|file
+zsh|zsh|file
+font|floating_normal_inactive|around
+8|828482|around
 font|fontconfig|around
 fo|fontconfig|file
 conf|config|around
