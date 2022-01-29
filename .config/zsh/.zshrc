@@ -34,7 +34,8 @@ source $ZDOTDIR/plugins/themes/comrade.zsh-theme
 # # Lines configured by zsh-newuser-install
 # setopt extendedglob
 # unsetopt beep notify
-# bindkey -e
+bindkey -v
+export KEYTIMEOUT=1
 # # End of lines configured by zsh-newuser-install
 
 # Some random additional options (deal with them later)
