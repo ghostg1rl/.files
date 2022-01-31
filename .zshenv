@@ -5,7 +5,7 @@
 ################################
 
 # path
-export PATH=$PATH:$HOME/scripts/
+export PATH=$PATH:$HOME/.git/.system/scripts/
 
 # xdg
 export XDG_DATA_HOME="$HOME/.local/share/" \
@@ -18,12 +18,15 @@ export XDG_DATA_HOME="$HOME/.local/share/" \
 # '.' files
 export DOTFILES="$HOME/.files"
 
+# git directory
+export GITDIR="$HOME/.git"
+
 # zsh
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh" \
     HISTFILE="$XDG_STATE_HOME/zsh/history" \
     HISTSIZE=10000 \
     SAVEHIST=10000 \
-    ZSHRC="/home/thereayou/.config/zsh/.zshrc" \
+    ZSHRC="$HOME/.config/zsh/.zshrc" \
 
 # editor
 export EDITOR="nvim" \

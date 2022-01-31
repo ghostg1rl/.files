@@ -22,7 +22,7 @@ require("awful.hotkeys_popup.keys")
 local beautiful = require("beautiful")
 
 -- Initialize a theme from the specified path
-beautiful.init("/home/thereayou/.config/awesome/themes/default/theme.lua")
+beautiful.init("/home/ghostg1rl/.config/awesome/themes/default/theme.lua")
 
 -- "main" module {{{
 local main = {
@@ -559,7 +559,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 autostart = true
 autostartApps = {
 	"picom",
-	"nitrogen --set-centered /home/thereayou/pictures/wallpapers/cherry-blossoms.jpg"
+	"nitrogen --set-centered /home/ghostg1rl/.git/wallpapers/cherry-blossoms.jpg"
 }
 
 if autostart then

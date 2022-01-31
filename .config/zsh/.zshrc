@@ -4,13 +4,6 @@ source ~/aliases
 # Commands to execute on launch
 # neofetch
 
-# Source one man's completions
-source $ZDOTDIR/plugins/completions.zsh
-
-# Get the theme
-fpath=($ZDOTDIR/plugins/themes/ $fpath)
-source $ZDOTDIR/plugins/themes/comrade.zsh-theme
-
 # # The following lines were added by compinstall
 #
 # zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
@@ -26,7 +19,7 @@ source $ZDOTDIR/plugins/themes/comrade.zsh-theme
 # zstyle ':completion:*' prompt 'consider the corrections given below...'
 # zstyle ':completion:*' squeeze-slashes true
 # zstyle ':completion:*' use-compctl false
-# zstyle :compinstall filename '/home/thereayou/.config/zsh//.zshrc'
+# zstyle :compinstall filename $HOME'/.config/zsh//.zshrc'
 #
 # autoload -Uz compinit; compinit
 #
@@ -42,3 +35,20 @@ export KEYTIMEOUT=1
 setopt HIST_SAVE_NO_DUPS  # Do not write a duplicate event to the history file.
 setopt prompt_subst
 _comp_options+=(globdots) # Autocomplete '.' files
+
+###############
+### PLUGINS ###
+###############
+
+# theme
+fpath=($ZDOTDIR/plugins/themes/ $fpath)
+source $ZDOTDIR/plugins/themes/ghost.zsh-theme
+# completions
+source $ZDOTDIR/plugins/completions.zsh
+# highlighting
+source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# easily jump to parent directory with 'bd' command
+source $ZDOTDIR/plugins/zsh-bd/bd.zsh
+# fzf
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
