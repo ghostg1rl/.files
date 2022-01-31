@@ -1,3 +1,7 @@
+g|gruvbox|file
+theme|themes|file
+color|colorscheme|around
+back|backup_me|file
 Remove|Remove Overflow.css|file
 plug|plugins|around
 mod|modules|around
