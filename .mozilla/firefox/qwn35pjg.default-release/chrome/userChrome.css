@@ -4,3 +4,14 @@
 
 /* Setting-up the font for most of the things */
 html { font-family:Ubuntu !important }
+
+/* Disable the mute button on tabs (it is buggy, so...)
+ * TODO: move it to the right of a tab */
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+.tabbrowser-tab :-moz-any(.tab-icon-sound,.tab-icon-overlay[muted]) {
+    display: none;
+}
+
+.tabbrowser-tab[pinned] :-moz-any(.tab-icon-overlay[soundplaying]) {
+    display: none;
+}
