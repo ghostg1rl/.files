@@ -1,12 +1,13 @@
 source $ZDOTDIR/lib/git.zsh
 
 if [[ -z $ZSH_THEME_GHOST_PREFIX ]]; then
-    ZSH_THEME_GHOST_PREFIX=$'\U1F44A\U1F3FB'
+    # ZSH_THEME_GHOST_PREFIX=$'\U1F44A\U1F3FB'
+    ZSH_THEME_GHOST_PREFIX=$'δ'
 fi
 
 ZSH_HAMMER_AND_SICKLE=$'\U262D'
 
-PROMPT='%B%F{252}$ZSH_THEME_GHOST_PREFIX%f%b %B%F{252}%(4~|%-1~/.../%2~|%3~)%f%b %B%F{blue}%f%b%{$reset_color%}'
+PROMPT='%B%F{245}%(4~|%-1~/.../%2~|%3~)%f%b %B%F{255}$ZSH_THEME_GHOST_PREFIX%f%b %B%F{blue}%f%b%{$reset_color%}'
 RPROMPT='%B%F{white}$(git_prompt_info)%f%b'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%F{252}[%f%F{white}%f"

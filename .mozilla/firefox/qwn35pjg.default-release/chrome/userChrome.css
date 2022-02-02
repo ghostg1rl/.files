@@ -5,13 +5,16 @@
 /* Setting-up the font for most of the things */
 html { font-family:Ubuntu !important }
 
-/* Disable the mute button on tabs (it is buggy, so...)
+/* Move the 'media playing'-icon to the right of the favicon.
  * TODO: move it to the right of a tab */
-@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
-.tabbrowser-tab :-moz-any(.tab-icon-sound,.tab-icon-overlay[muted]) {
-    display: none;
+.tab-icon-stack:is([muted],[soundplaying],[activemedia-blocked]){
+    grid-template-areas: "a s";
 }
-
-.tabbrowser-tab[pinned] :-moz-any(.tab-icon-overlay[soundplaying]) {
-    display: none;
+.tab-icon-overlay:is([muted],[soundplaying],[activemedia-blocked]){ grid-area: s; }
+.tab-icon-overlay,.tab-icon-image{ opacity: 1 !important; }
+.tab-icon-overlay {
+    padding: 0 !important;
+}
+.tab-icon-overlay:hover {
+    background: none !important;
 }

@@ -5,67 +5,75 @@ pcall(require, "luarocks.loader")
 -- A variable for everything - rc
 rc = {}
 
--- Standard awesome library
+-- awesomeWM libraries {{{
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
--- Widget and layout library
 local wibox = require("wibox")
--- Notification library
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
--- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
-
--- Theme handling library
 local beautiful = require("beautiful")
+-- }}}
 
 -- Initialize a theme from the specified path
-beautiful.init("/home/ghostg1rl/.config/awesome/themes/default/theme.lua")
+beautiful.init("/home/ghost_g1rl/.config/awesome/themes/default/theme.lua")
 
 -- "main" module {{{
-local main = {
-  require("main.error-handling"),
-  vars = require("main.user-var"),
-  layouts = require("main.layouts"),
-  -- tags    = require("main.tags"),
-  -- menu    = require("main.menu"),
-  -- rules   = require("main.rules"),
-}
---- }}}
 
--- User defined variables & modkey {{{
-rc.vars = main.vars()
+-- Handling errors (by calling the module) {{
+require("main.error-handling")
+-- }}
+
+-- User defined variables & modkey
+-- P.S. It's essential to put var's separately from others, 'cause some of them won't see the declarations {{
+rc.vars = require("main.user-var")()
 modkey = rc.vars.modkey
--- }}}
+-- }}
 
--- Layouts {{{
-rc.layouts = main.layouts()
--- }}}
-
-
--- {{{ Menu
--- Create a launcher widget and a main menu
-myawesomemenu = {
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", rc.vars.terminal .. " -e man awesome" },
-   { "edit config", rc.vars.editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
+-- Variable to store each function we call later {{
+local main = {
+  layouts = require("main.layouts"),
+  tags    = require("main.tags"),
+  menu    = require("main.menu"),
+  rules   = require("main.rules"),
 }
+--- }}
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", rc.vars.terminal }
-                                  }
-                        })
+-- Layouts {{
+rc.layouts = main.layouts()
+-- }}
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+-- Tags {{
+rc.tags = main.tags()
+-- }}
 
--- Menubar configuration
-menubar.utils.terminal = rc.vars.terminal -- Set the terminal for applications that require it
+-- Menu {{
+rc.main_menu = main.menu()
+-- + launcher
+rc.launcher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = rc.main_menu })
+-- + smthing
+menubar.utils.terminal = rc.vars.terminal
+-- }}
+
+-- Rules: rules to apply to new clients (through the "manage" signal). {{
+awful.rules.rules = main.rules(clientkeys, clientbuttons)
+-- }}
+
+-- Signals (just calling the module) {{
+require("main.signals")
+-- }}
+
 -- }}}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -76,12 +84,6 @@ menubar.utils.terminal = rc.vars.terminal -- Set the terminal for applications t
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
-
-
-
-
-
-
 
 -- Wibar {{{
 -- Create a textclock widget
@@ -143,13 +145,6 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
-    -- Wallpaper
-    set_wallpaper(s)
-
-    -- REMEMBER
-    -- Each screen has its own tag table.
-    awful.tag({ "main", "net", "read", "art", "msgs", "sys" }, s, awful.layout.layouts[1])
-
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
@@ -182,7 +177,7 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
+            rc.launcher,
             s.mytaglist,
             s.mypromptbox,
         },
@@ -201,7 +196,7 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end)
+    awful.button({ }, 3, function () rc.main_menu:toggle() end)
 ))
 -- }}}
 
@@ -426,129 +421,11 @@ root.keys(globalkeys)
 
 
 
--- {{{ Rules
--- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     raise = true,
-                     keys = clientkeys,
-                     buttons = clientbuttons,
-                     screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
-     }
-    },
-
-    -- Floating clients.
-    { rule_any = {
-        instance = {
-          "DTA",  -- Firefox addon DownThemAll.
-          "copyq",  -- Includes session name in class.
-          "pinentry",
-        },
-        class = {
-          "Arandr",
-          "Blueman-manager",
-          "Gpick",
-          "Kruler",
-          "MessageWin",  -- kalarm.
-          "Sxiv",
-          "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-          "Wpa_gui",
-          "veromix",
-          "xtightvncviewer"},
-
-        -- Note that the name property shown in xprop might be set slightly after creation of the client
-        -- and the name shown there might not match defined rules here.
-        name = {
-          "Event Tester",  -- xev.
-        },
-        role = {
-          "AlarmWindow",  -- Thunderbird's calendar.
-          "ConfigManager",  -- Thunderbird's about:config.
-          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-        }
-      }, properties = { floating = true }},
-
-    -- Add titlebars to normal clients and dialogs
-    { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = false }
-    },
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
-}
--- }}}
 
 
 
 
 
-
-
-
--- {{{ Signals
--- Signal function to execute when a new client appears.
-client.connect_signal("manage", function (c)
-    -- Set the windows at the slave,
-    -- i.e. put it at the end of others instead of setting it master.
-    -- if not awesome.startup then awful.client.setslave(c) end
-
-    if awesome.startup
-      and not c.size_hints.user_position
-      and not c.size_hints.program_position then
-        -- Prevent clients from being unreachable after screen count changes.
-        awful.placement.no_offscreen(c)
-    end
-end)
-
--- Add a titlebar if titlebars_enabled is set to true in the rules.
-client.connect_signal("request::titlebars", function(c)
-    -- buttons for the titlebar
-    local buttons = gears.table.join(
-        awful.button({ }, 1, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.move(c)
-        end),
-        awful.button({ }, 3, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.resize(c)
-        end)
-    )
-
-    awful.titlebar(c) : setup {
-        { -- Left
-            awful.titlebar.widget.iconwidget(c),
-            buttons = buttons,
-            layout  = wibox.layout.fixed.horizontal
-        },
-        { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
-            buttons = buttons,
-            layout  = wibox.layout.flex.horizontal
-        },
-        { -- Right
-            awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
-            layout = wibox.layout.fixed.horizontal()
-        },
-        layout = wibox.layout.align.horizontal
-    }
-end)
-
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
--- }}}
 
 
 
@@ -559,7 +436,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 autostart = true
 autostartApps = {
 	"picom",
-	"nitrogen --set-centered /home/ghostg1rl/.git/wallpapers/cherry-blossoms.jpg"
+	"nitrogen --set-centered /home/ghost_g1rl/.git/wallpapers/cherry-blossoms.jpg"
 }
 
 if autostart then

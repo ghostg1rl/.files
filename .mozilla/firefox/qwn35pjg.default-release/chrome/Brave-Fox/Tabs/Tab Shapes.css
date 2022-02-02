@@ -27,7 +27,7 @@
 }
 
 /* Set Value For Radius For Both Top Corners */
-#tabbrowser-tabs { 
+#tabbrowser-tabs {
     --user-tab-rounding: 5px;
 }
 
@@ -62,7 +62,7 @@
 .tabbrowser-tab {
     padding-left: 0 !important;
     padding-right: 0 !important;
-}   
+}
 
 /* Changes Minimum Hight For Tabs [Do Not Touch] */
 #TabsToolbar,
@@ -104,13 +104,13 @@ transition: opacity 300ms linear !important;
 }
 
 /* Make Pinned Tabs Have One Size No Matter How Many Tabs Are Open */
-.tabbrowser-tab[pinned] {  
+.tabbrowser-tab[pinned] {
     max-width: 35px !important;
     min-width: 35px !important;
 }
 
 /* Makes Tabs Have A Bigger Max Size To Match Brave's */
-.tabbrowser-tab[fadein]:not([pinned]) {  
+.tabbrowser-tab[fadein]:not([pinned]) {
     max-width: 245px !important;
 }
 

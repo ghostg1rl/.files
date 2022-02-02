@@ -1,3 +1,7 @@
+launcher|launcher|around
+hotkey|hotkeys_popup|around
+o|own|around
+tags|tags|around
 g|gruvbox|file
 theme|themes|file
 color|colorscheme|around
