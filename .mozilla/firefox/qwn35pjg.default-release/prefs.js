@@ -245,7 +245,7 @@ user_pref("services.sync.deletePwdFxA", true);
 user_pref("services.sync.engine.prefs.modified", false);
 user_pref("services.sync.forms.lastSync", "1642411696.75");
 user_pref("services.sync.forms.syncID", "BhBv5TG87Ju_");
-user_pref("services.sync.globalScore", 6);
+user_pref("services.sync.globalScore", 9);
 user_pref("services.sync.lastPing", 1643798733);
 user_pref("services.sync.lastSync", "Wed Feb 02 2022 17:12:36 GMT+0200 (Eastern European Standard Time)");
 user_pref("services.sync.lastTabFetch", 1643809725);
