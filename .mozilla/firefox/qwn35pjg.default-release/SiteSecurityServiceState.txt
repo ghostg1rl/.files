@@ -18,7 +18,7 @@ www.youtube.com^partitionKey=%28http%2Cyoutube.com%29:HSTS	0	19025	1675340811978
 youtu.be^partitionKey=%28http%2Cyoutu.be%29:HSTS	1	19011	1674132505085,1,0,2
 i.imgur.com^partitionKey=%28http%2Cimgur.com%29:HSTS	1	19024	1643729914672,1,0,2
 deepjyoti30.github.io^partitionKey=%28http%2Cdeepjyoti30.github.io%29:HSTS	0	19022	1675130662452,1,0,2
-firefox.settings.services.mozilla.com:HSTS	15	19025	1675345871771,1,0,2
+firefox.settings.services.mozilla.com:HSTS	15	19025	1675350378069,1,0,2
 contile.services.mozilla.com:HSTS	15	19025	1675349771813,1,0,2
 stats.kde.org^partitionKey=%28http%2Ckde.org%29:HSTS	0	19009	1658195154224,1,0,2
 stevelosh.com^partitionKey=%28http%2Cstevelosh.com%29:HSTS	0	19011	1705692312987,1,0,2
