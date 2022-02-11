@@ -64,10 +64,10 @@
     padding-right: 0 !important;
 }
 
-/* Changes Minimum Hight For Tabs [Do Not Touch] */
+/* Changes Minimum Hight For Tabs [Do Not Touch] (toched) */
 #TabsToolbar,
 #tabbrowser-tabs {
-    --tab-min-height: 30px !important;
+    --tab-min-height: 35px !important;
 }
 
 /* Adds's Brave "Like" Tab Dividers */

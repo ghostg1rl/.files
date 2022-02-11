@@ -56,14 +56,6 @@ rc.launcher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = rc.
 menubar.utils.terminal = rc.vars.terminal
 -- }}
 
--- Rules: rules to apply to new clients (through the "manage" signal). {{
-awful.rules.rules = main.rules(clientkeys, clientbuttons)
--- }}
-
--- Signals (just calling the module) {{
-require("main.signals")
--- }}
-
 -- }}}
 
 
@@ -88,7 +80,6 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Wibar {{{
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
-
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -223,7 +214,7 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
+    awful.key({ modkey,           }, "w", function () rc.main_menu:show() end,
               {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
@@ -415,6 +406,14 @@ clientbuttons = gears.table.join(
 -- Set keys
 root.keys(globalkeys)
 -- }}}
+
+-- Rules: rules to apply to new clients (through the "manage" signal). {{
+awful.rules.rules = main.rules(clientkeys, clientbuttons)
+-- }}
+
+-- Signals (just calling the module) {{
+require("main.signals")
+-- }}
 
 
 
